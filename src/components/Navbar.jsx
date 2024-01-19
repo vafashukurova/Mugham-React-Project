@@ -1,31 +1,15 @@
 import { useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-scroll";
-import {FaXmark, FaBars} from "react-icons/fa6"
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaTimes } from "react-icons/fa";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  useState(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-    };
-  });
 
   const navItems = [
     { link: "Visit", path: "visit" },
@@ -36,23 +20,42 @@ function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white border border-1 border-[lightGrey] m-1">
-      <nav className="w-[1250px] mx-auto flex items-center justify-between">
+    <header className="sticky top-0 mx-1 z-10 border-b-2 bg-white md:border border-1 border-[lightGrey] md:px-10 px-5">
+      <nav className="flex items-center justify-between md:container">
         <div>
           <img src={logo} className="w-[80px] h-[60px]" />
         </div>
 
-        <ul className="items-center justify-between hidden space-x-12 text-xs font-medium uppercase cursor-pointer md:flex text-dimGrey">
-          {navItems.map(({ link, path }) => <Link to={path} smooth={true} spy={true} key={path}>{link}</Link>)}
+        <ul className="items-center justify-between hidden gap-6 text-xs font-medium uppercase cursor-pointer md:flex text-dimGrey">
+          {navItems.map(({ link, path }) => (
+            <Link to={path} key={path}>
+              {link}
+            </Link>
+          ))}
         </ul>
 
-            <div className="md:hidden">
-              <button>
-                {
-                  isMenuOpen?(<FaXmark className="w-6 h-6 text-black"/>):(<FaBars className="w-6 h-6 text-black"/>)
-                }
-              </button>
-            </div>
+        <div className="z-20 md:hidden" onClick={toggleMenu}>
+          {isMenuOpen ? (
+            <FaTimes size={25} className="text-dimGrey" />
+          ) : (
+            <RxHamburgerMenu size={25} className="text-textPrimary" />
+          )}
+        </div>
+
+        <ul
+          className={`${
+            isMenuOpen
+              ? `opacity-100 transform translate-x-0`
+              : `opacity-0 transform -translate-y-full`
+          } transition-all duration-300 ease-in-out absolute flex flex-col items-center justify-center top-0 left-0 w-full h-screen bg-stone-100 text-md md:hidden gap-4`}
+          onClick={() => setIsMenuOpen(isMenuOpen)}
+        >
+          {navItems.map(({ link, path }) => (
+            <Link to={path} smooth={true} spy={true} key={path}>
+              {link}
+            </Link>
+          ))}
+        </ul>
       </nav>
     </header>
   );
