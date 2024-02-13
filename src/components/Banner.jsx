@@ -6,23 +6,23 @@ import "../index.css";
 
 function Banner() {
   return (
-    <div className="md:container flex overflow-y-scroll h-full max-h-[550px] md:max-h-[600px] custom-scrollbar">
-      <div className="flex-col pt-10 flex md:gap-36 gap-24  pl-3">
-        <h1 className="text-textPrimary font-bold text-[14px] md:text-[35px] md:w-1/2 w-3/4 md:sticky md:top-11 z-0">
+    <div className="md:pl-10 flex overflow-y-scroll h-full max-h-[550px] md:max-h-[600px] custom-scrollbar">
+      <div className="flex flex-col gap-24 pt-10 pl-3 md:gap-36">
+        <h1 className="text-textPrimary font-bold text-[14px] md:text-[40px] md:w-1/2 w-3/4 md:sticky md:top-11 z-0">
           WELCOME <br />
           TO THE INTERNATIONAL MUGHAM CENTER <br /> OF AZERBAIJAN
         </h1>
-        <div className="cursor-pointer xs:w-3">
+        <div className="cursor-pointer">
           {/* <p className="rotate-90">SCROLL DOWN</p> */}
           <img src={arrowDown} />
         </div>
         {/* <img src={arrowDown} className="w-6"/> */}
       </div>
 
-      <div className="w-3/4 md:w-1/2 md:gap-5 md:flex h-[550px] md:h-[800px] ">
-        <div className="flex flex-col border border-t-0 border-b-0">
+      <div className="w-3/4 md:w-1/2 md:gap-5 md:flex ">
+        <div className="flex flex-col md:w-1/2 h-[550px] md:h-[1000px]">
           <img src={img1} />
-          <div className="flex flex-col justify-between h-40 p-3 md:p-5 md:h-60">
+          <div className="flex flex-col justify-between h-40 p-3 border border-t-0 border-b-0 md:p-5 md:h-60">
             <div>
               <h3 className="text-jetBlack text-xs md:text-[15px] font-bold">
                 OUR HISTORY
@@ -37,10 +37,10 @@ function Banner() {
               READ MORE
             </a>
           </div>
-          <img src={img3} className="" />
+          <img src={img3} />
         </div>
 
-        <div>
+        <div className="md:w-1/2 h-[550px] md:h-[600px]">
           <div className="flex flex-col justify-between h-40 p-3 border-l md:p-5 md:h-60">
             <div>
               <h3 className="text-jetBlack text-[15px] font-bold">MUGHAM</h3>

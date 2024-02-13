@@ -1,8 +1,14 @@
 import { useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-scroll";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { FaTimes } from "react-icons/fa";
+// import { RxHamburgerMenu } from "react-icons/rx";
+// import {FaSearch, FaBars } from "react-icons/fa";
+import {
+  LiaTimesSolid,
+  LiaAngleRightSolid,
+  LiaBarsSolid,
+} from "react-icons/lia";
+import { IoMdSearch } from "react-icons/io";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,13 +26,13 @@ function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 mx-1 z-10 border-b-2 bg-white md:border border-1 border-[lightGrey] md:px-10 px-5">
-      <nav className="flex items-center justify-between md:container">
+    <header className="sticky top-0 mx-1 z-10 border-b bg-white md:border border-1 border-[lightGrey]">
+      <nav className="container flex items-center justify-between md:container">
         <div>
           <img src={logo} className="w-[80px] h-[60px]" />
         </div>
 
-        <ul className="items-center justify-between hidden gap-6 text-xs font-medium uppercase cursor-pointer md:flex text-dimGrey">
+        <ul className="items-center justify-between hidden gap-8 text-xs font-medium uppercase cursor-pointer md:text-[14px] md:flex text-dimGrey">
           {navItems.map(({ link, path }) => (
             <Link to={path} key={path}>
               {link}
@@ -34,11 +40,17 @@ function Navbar() {
           ))}
         </ul>
 
-        <div className="z-20 md:hidden" onClick={toggleMenu}>
+        <div
+          className="z-20 flex items-center gap-3 md:hidden"
+          onClick={toggleMenu}
+        >
           {isMenuOpen ? (
-            <FaTimes size={25} className="text-dimGrey" />
+            <LiaTimesSolid size={25} className=" text-textPrimary" />
           ) : (
-            <RxHamburgerMenu size={25} className="text-textPrimary" />
+            <>
+              <IoMdSearch size={25} className=" text-textPrimary" />
+              <LiaBarsSolid size={25} className="text-textPrimary" />
+            </>
           )}
         </div>
 
@@ -47,12 +59,18 @@ function Navbar() {
             isMenuOpen
               ? `opacity-100 transform translate-x-0`
               : `opacity-0 transform -translate-y-full`
-          } transition-all duration-300 ease-in-out absolute flex flex-col items-center justify-center top-0 left-0 w-full h-screen bg-stone-100 text-md md:hidden gap-4`}
+          } transition-all duration-300 ease-in-out absolute flex flex-col top-0 pt-20 container left-0 w-full h-screen bg-white text-md md:hidden gap-4`}
           onClick={() => setIsMenuOpen(isMenuOpen)}
         >
           {navItems.map(({ link, path }) => (
-            <Link to={path} smooth={true} spy={true} key={path}>
-              {link}
+            <Link
+              to={path}
+              smooth={true}
+              spy={true}
+              key={path}
+              className="flex items-center justify-between px-5 py-4 uppercase border-b cursor-pointer text-dimGrey border-borderGrey"
+            >
+              {link} <LiaAngleRightSolid />
             </Link>
           ))}
         </ul>
