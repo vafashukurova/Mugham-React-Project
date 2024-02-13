@@ -8,6 +8,7 @@ export default {
         textPrimary: "#1A1A1A",
         jetBlack: "#090909",
         lightGrey: "#A5A5A5",
+        borderGrey:"#E6E6E6"
       },
     },
     container: {
@@ -16,8 +17,8 @@ export default {
       screens: {
         sm: "100%",
         md: "100%",
-        lg: "1250px", // Set the max-width for lg screens
-        xl: "1250px", // Set the max-width for xl screens
+        lg: "1300px", // Set the max-width for lg screens
+        xl: "1300px", // Set the max-width for xl screens
       },
     },
   },
